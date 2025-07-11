@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dados CNPJ 51.770.153/0001-59</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    button { margin: 5px; padding: 10px; }
+    .info { margin-top: 20px; border: 1px solid #ccc; padding: 15px; }
+    dt { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>WR Aluguel de Carros de Luxo Ltda</h1>
+  <p><em>CNPJ:</em> 51.770.153/0001‑59 — Locar Veiculos Premium</p>
+
+  <button onclick="showSection('cadastro')">Dados Cadastrais</button>
+  <button onclick="showSection('contato')">Contatos</button>
+  <button onclick="showSection('endereco')">Endereço</button>
+  <button onclick="showSection('cnaes')">Atividades (CNAE)</button>
+  <button onclick="showSection('socios')">Sócios / Administradores</button>
+  <button onclick="showSection('tributario')">Tributação & Regime</button>
+
+  <div id="info" class="info"></div>
+
+  <script>
+    const data = {
+      cadastro: {
+        "Razão Social": "WR Aluguel de Carros de Luxo LTDA",
+        "Nome Fantasia": "Locar Veiculos Premium",
+        "Data de Abertura": "10/08/2023",
+        "Situação Cadastral": "Ativa",
+        "Natureza Jurídica": "Sociedade Empresária Limitada",
+        "Capital Social": "R$ 100.000,00",
+        "Tipo": "Matriz",
+        "Porte": "Empresa de Pequeno Porte",
+      },
+      contato: {
+        "Telefone / WhatsApp": "(63) 98431‑7402",
+        "E‑mail": "wllocarveiculos@gmail.com"
+      },
+      endereco: {
+        "Logradouro": "Rua Bernardo Guimaraes, 475",
+        "Complemento": "Quadra207 Lote 14",
+        "Bairro": "Serrano 01",
+        "Município": "Paraíso do Tocantins – TO",
+        "CEP": "77600‑000"
+      },
+      cnaes: {
+        "Principal": "77.11‑0‑00 – Locação de automóveis sem condutor",
+        "Secundárias": [
+          "49.23‑0‑02 – Transporte de passageiros com motorista",
+          "52.29‑0‑02 – Reboque de veículos",
+          "77.19‑5‑99 – Locação de outros meios de transporte sem condutor"
+        ]
+      },
+      socios: [
+        { nome: "Wanderson Carvalho dos Santos", cargo: "Sócio‑Administrador" },
+        { nome: "Rubem Naves de Lima", cargo: "Sócio" }
+      ],
+      tributario: {
+        "Simples Nacional": "Optante desde 10/08/2023",
+        "MEI": "Não"
+      }
+    };
+
+    function showSection(key) {
+      const target = data[key];
+      let html = "<dl>";
+      if (Array.isArray(target)) {
+        target.forEach(item => {
+          html += `<dt>${item.nome} (${item.cargo})</dt>`;
+        });
+      } else if (typeof target === 'object') {
+        Object.entries(target).forEach(([k,v]) => {
+          if (Array.isArray(v)) {
+            html += `<dt>${k}:</dt>`;
+            v.forEach(i => html += `<dd>${i}</dd>`);
+          } else {
+            html += `<dt>${k}:</dt><dd>${v}</dd>`;
+          }
+        });
+      }
+      html += "</dl>";
+      document.getElementById('info').innerHTML = html;
+    }
+
+    // Exibe dados cadastrais por padrão
+    showSection('cadastro');
+  </script>
+</body>
+</html>
